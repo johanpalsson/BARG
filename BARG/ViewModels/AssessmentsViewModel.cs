@@ -11,7 +11,7 @@ namespace BARG.ViewModels
         public int RegionId { get; set; }
         public IEnumerable<Region> Regions { get; set; }
         public List<Region> RegionsList { get; set; }
-        public string[] ShareRegion { get; set; }
+        //public string[] ShareRegion { get; set; }
 
         public string Heading { get; set; }
 

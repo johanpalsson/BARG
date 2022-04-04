@@ -10,10 +10,7 @@ namespace BARG
             bundles.Add(new Bundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                           "~/Scripts/bootstrap.js",
-                          "~/scripts/bootbox.js",
-                          "~/Scripts/respond.js",
-                          "~/Scripts/datatables/jquery.datatables.js",
-                          "~/Scripts/datatables/datatables.bootstrap.js"));
+                          "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,8 +22,8 @@ namespace BARG
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/site.css",
-                         "~/content/bootstrap.css",
-                         "~/content/datatables/css/datatables.bootstrap.css"));
+                         "~/Content/bootstrap.css"
+                        ));
 
         }
     }
