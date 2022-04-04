@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -112,12 +119,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -168,39 +169,124 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssessmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203301352373_Initial.cs" />
+    <Compile Include="Migrations\202203301352373_Initial.designer.cs">
+      <DependentUpon>202203301352373_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203301353542_RemoveMy.cs" />
+    <Compile Include="Migrations\202203301353542_RemoveMy.designer.cs">
+      <DependentUpon>202203301353542_RemoveMy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203301453468_Updates.cs" />
+    <Compile Include="Migrations\202203301453468_Updates.designer.cs">
+      <DependentUpon>202203301453468_Updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203301513224_Updates1.cs" />
+    <Compile Include="Migrations\202203301513224_Updates1.designer.cs">
+      <DependentUpon>202203301513224_Updates1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311350268_Updates2.cs" />
+    <Compile Include="Migrations\202203311350268_Updates2.designer.cs">
+      <DependentUpon>202203311350268_Updates2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311425086_Updates3.cs" />
+    <Compile Include="Migrations\202203311425086_Updates3.designer.cs">
+      <DependentUpon>202203311425086_Updates3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311429461_Update.cs" />
+    <Compile Include="Migrations\202203311429461_Update.designer.cs">
+      <DependentUpon>202203311429461_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311445140_Updates4.cs" />
+    <Compile Include="Migrations\202203311445140_Updates4.designer.cs">
+      <DependentUpon>202203311445140_Updates4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311447471_Updates5.cs" />
+    <Compile Include="Migrations\202203311447471_Updates5.designer.cs">
+      <DependentUpon>202203311447471_Updates5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311539526_AddRegions.cs" />
+    <Compile Include="Migrations\202203311539526_AddRegions.designer.cs">
+      <DependentUpon>202203311539526_AddRegions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311549309_Updates6.cs" />
+    <Compile Include="Migrations\202203311549309_Updates6.designer.cs">
+      <DependentUpon>202203311549309_Updates6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311556550_Update1.cs" />
+    <Compile Include="Migrations\202203311556550_Update1.designer.cs">
+      <DependentUpon>202203311556550_Update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311608052_Update2.cs" />
+    <Compile Include="Migrations\202203311608052_Update2.designer.cs">
+      <DependentUpon>202203311608052_Update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203311608536_AddRegionToTable.cs" />
+    <Compile Include="Migrations\202203311608536_AddRegionToTable.designer.cs">
+      <DependentUpon>202203311608536_AddRegionToTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204010738573_Updates7.cs" />
+    <Compile Include="Migrations\202204010738573_Updates7.designer.cs">
+      <DependentUpon>202204010738573_Updates7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204011025503_Upates.cs" />
+    <Compile Include="Migrations\202204011025503_Upates.designer.cs">
+      <DependentUpon>202204011025503_Upates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204011045485_Updates8.cs" />
+    <Compile Include="Migrations\202204011045485_Updates8.designer.cs">
+      <DependentUpon>202204011045485_Updates8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204011232301_Updates9.cs" />
+    <Compile Include="Migrations\202204011232301_Updates9.designer.cs">
+      <DependentUpon>202204011232301_Updates9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204021001564_Updates10.cs" />
+    <Compile Include="Migrations\202204021001564_Updates10.designer.cs">
+      <DependentUpon>202204021001564_Updates10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Assessment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Region.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AssessmentsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.js" />
+    <Content Include="Scripts\jquery-3.1.0.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -235,22 +321,78 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Assessments\NewAssessment.cshtml" />
+    <Content Include="Views\Assessments\InsertCustomers.cshtml" />
+    <Content Include="Views\Assessments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SavingPlans\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202203301352373_Initial.resx">
+      <DependentUpon>202203301352373_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203301353542_RemoveMy.resx">
+      <DependentUpon>202203301353542_RemoveMy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203301453468_Updates.resx">
+      <DependentUpon>202203301453468_Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203301513224_Updates1.resx">
+      <DependentUpon>202203301513224_Updates1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311350268_Updates2.resx">
+      <DependentUpon>202203311350268_Updates2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311425086_Updates3.resx">
+      <DependentUpon>202203311425086_Updates3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311429461_Update.resx">
+      <DependentUpon>202203311429461_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311445140_Updates4.resx">
+      <DependentUpon>202203311445140_Updates4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311447471_Updates5.resx">
+      <DependentUpon>202203311447471_Updates5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311539526_AddRegions.resx">
+      <DependentUpon>202203311539526_AddRegions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311549309_Updates6.resx">
+      <DependentUpon>202203311549309_Updates6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311556550_Update1.resx">
+      <DependentUpon>202203311556550_Update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311608052_Update2.resx">
+      <DependentUpon>202203311608052_Update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203311608536_AddRegionToTable.resx">
+      <DependentUpon>202203311608536_AddRegionToTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204010738573_Updates7.resx">
+      <DependentUpon>202204010738573_Updates7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204011025503_Upates.resx">
+      <DependentUpon>202204011025503_Upates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204011045485_Updates8.resx">
+      <DependentUpon>202204011045485_Updates8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204011232301_Updates9.resx">
+      <DependentUpon>202204011232301_Updates9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204021001564_Updates10.resx">
+      <DependentUpon>202204021001564_Updates10.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -285,7 +427,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

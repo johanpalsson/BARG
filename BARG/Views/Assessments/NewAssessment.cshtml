@@ -1,0 +1,142 @@
+﻿@model BARG.ViewModels.AssessmentsViewModel
+@{
+    ViewBag.Title = "NewAssessment";
+
+
+}
+
+<h2>test</h2>
+
+  
+@using (Html.BeginForm("Save", "Assessments"))
+{
+    @*@Html.ValidationSummary(true)*@
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+
+
+
+    <legend>Sample submission</legend>
+    <table id="submissionTable" class="table table-striped">
+        <thead>
+            <tr>
+                <td>Region</td>
+                <td>Share</td>
+                <td></td>
+                <td></td>
+
+                <td> <button id="add" type="button" class="btn btn-primary">Add</button></td>
+            </tr>
+        </thead>
+
+        <tr id="tablerow0">
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(m => m.RegionId, new SelectList(Model.Regions, "Id", "Name"), "Select Region", new { @class = "form-control addRegion", id = "Region", name = "Region" })
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.ShareRegion, new { @class = "form-control addShareRegion", id = "shareRegion" })
+                </div>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-link" onclick="removeTr(0);">remove</button>
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+                <p>
+
+
+                </p>
+      
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" >
+                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Link with href
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+    <p>
+   
+    </p>
+    <hr />
+
+    <p>
+        <button data-assess-id="@User.Identity" type="submit" calss="btn btn-default js-save">Save</button>
+    </p>
+
+}
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+            $(".js-save").click(function (e) {
+                var button = $(e.taget);
+                $.post("/home/assessments", { "": button.attr("data-assess-id") })
+
+                    .fail(function () {
+                        alert("Something went wrong");
+                    });
+            });
+
+        });
+
+
+
+        var counter = 1;
+        $(function () {
+            $('#add').click(function () {
+                $('<tr id="tablerow' + counter + '">'
+                    + '<td>'
+                    + '<select name ="Region" class="form-control" name="ClientSampleID[' + counter + ']"  style="width:250px;">'
+                    + $("#Region").html()
+                    + '</select>'
+                    + '</td>' +
+                    '<td>' +
+                    '<input type="text" class="form-control" name="AdditionalComments[' + counter + ']" />' +
+                    '</td>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-link" onclick="removeTr(' + counter + ');">remove</button>' +
+                    '</td>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-link" onclick="removeTr(' + counter + ');">expand</button>' +
+                    '</td>' +
+                    '<td>' +
+                    '</td>' +
+                    '</tr>').appendTo('#submissionTable');
+                counter++;
+                return false;
+            });
+        });
+        function removeTr(index) {
+            if (counter > 1) {
+                $('#tablerow' + index).remove();
+                counter--;
+            }
+            return false;
+        }
+
+
+
+    </script>
+}
