@@ -1,0 +1,47 @@
+﻿@model BARG.ViewModels.AssessmentsViewModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                 
+            </th>
+            <th>
+                
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+            <tr>
+                <td>
+                    @*@Html.EditorFor(m => m.RegionsList[i].Name, "ID:",new {@class="control-label" })*@
+                    @Model.RegionsList.Count
+                </td>
+
+                <td>
+                  -
+                </td>
+                 <td>
+                  -
+                </td>
+            </tr>
+
+    </tbody>
+
+
+</table>

@@ -20,27 +20,24 @@
         </tr>
 
     </thead>
-    <body>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @item.Id
+                    Lorem Ipsum                
                 </td>
                 <td>
-                    @item.Id
-                </td>
-                <td>
-                    @item.Id
-                </td>
-                <td>
-                    @item.Id
-                </td>
+                    @Html.ActionLink("Assessment", "Detail", "Assessments")
 
+                </td>
+                <td>
+                    @Html.ActionLink("Recomendation", "Detail", "Assessments")
+                </td>
             </tr>
         }
 
-    </body>
+    </tbody>
 </table>
 
 

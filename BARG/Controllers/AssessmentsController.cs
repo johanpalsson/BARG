@@ -1,7 +1,6 @@
 ﻿using BARG.Models;
 using BARG.ViewModels;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -34,6 +33,63 @@ namespace BARG.Controllers
             return View(assessments);
         }
 
+        public ActionResult Detail(int id)
+        {
+
+            var userId = User.Identity.GetUserId();
+            var assessment = _context.Assessments.SingleOrDefault(m => m.Id == id && m.AssessmentUser.Id == userId);
+
+
+
+
+            if (assessment == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new AssessmentsViewModel
+            {
+                Heading = "Edit Assessment",
+                Id = assessment.Id,
+                RegionLookUp = _context.Regions.ToList(),
+                RegionsList = assessment.Regions
+            };
+
+            return View(viewModel);
+
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(AssessmentsViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel2 = new AssessmentsViewModel
+                {
+                    Id = viewModel.Id,
+                    RegionLookUp = _context.Regions.ToList(),
+
+
+                };
+                return View("NewAssessment", viewModel);
+            }
+
+            var userId = User.Identity.GetUserId();
+
+
+            var assessment = _context.Assessments.Single(m => m.Id == viewModel.Id && m.AssessmentUser.Id == userId);
+
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Detail", assessment);
+        }
+
+
+
+
         [Authorize]
         public ActionResult NewAssessment()
         {
@@ -41,73 +97,35 @@ namespace BARG.Controllers
             var viewModel = new AssessmentsViewModel
             {
                 Heading = "New Assessment",
-                Regions = regions
+                RegionLookUp = regions
 
             };
             return View(viewModel);
         }
 
 
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Update(AssessmentsViewModel viewModel)
-        {
-            //if (!ModelState.IsValid)
-            //{
-            //    var viewModel2 = new AssessmentsViewModel
-            //    {
-            //        Id = viewModel.Id,
-            //        Regions = _context.Regions.ToList(),
 
-
-            //    };
-            //    return View("NewAssessment", viewModel);
-            //}
-
-
-
-
-            var assessment = _context.SaveChanges();
-            _context.SaveChanges();
-
-            return RedirectToAction("Detail", assessment);
-        }
-
-        public ActionResult Detail(int id)
-        {
-
-
-
-            return View();
-        }
-
-        public ActionResult Save(List<Region> regions)
+        public ActionResult Save(AssessmentsViewModel reg)
         {
             var userId = User.Identity.GetUserId();
             // ändrat från single to singleordefault för att inte få ett null exception
 
             var user = _context.Users.Single(u => u.Id == userId);
 
-            var region = _context.Regions.ToList();
+            var regionList = _context.Regions.Where(m => m.Id == reg.Id).ToList();
 
-            var viewModel = new AssessmentsViewModel
-            {
-                AssessmentUser = user,
-                RegionsList = regions
-            };
 
             var assessment = new Assessment
             {
                 AssessmentUser = user,
-                Regions = regions
+                Regions = regionList
 
             };
 
             _context.Assessments.Add(assessment);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", viewModel);
+            return RedirectToAction("Detail", assessment);
         }
     }
 }
